@@ -15,6 +15,10 @@ public class GameManager : MonoBehaviour
     public Text ScoreText;
     private int _score = 0;
 
+    private bool _gameStarted = false;
+
+    public GameObject MainMenu;
+
 
     void Awake()
     {
@@ -22,10 +26,16 @@ public class GameManager : MonoBehaviour
             Instance = this;
     }
 
-    
-    void Start()
+
+    private void Update()
     {
-        StartCoroutine("SpawnEnemies");
+        if (Input.anyKeyDown && !_gameStarted)
+        {
+            _gameStarted = true;
+            MainMenu.SetActive(false);
+            ScoreText.gameObject.SetActive(true);
+            StartCoroutine("SpawnEnemies");
+        }
     }
 
 
