@@ -9,12 +9,6 @@ public class Player : MonoBehaviour
 
     public float XMax;
 
-
-    void Start()
-    {
-        
-    }
-
     
     void Update()
     {

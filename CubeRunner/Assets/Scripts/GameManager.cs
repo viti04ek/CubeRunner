@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,6 +11,9 @@ public class GameManager : MonoBehaviour
     public GameObject EnemyPrefab;
     public Transform Spawner;
     public float SpawnerXMax;
+
+    public Text ScoreText;
+    private int _score = 0;
 
 
     void Awake()
@@ -48,5 +52,12 @@ public class GameManager : MonoBehaviour
     public void Restart()
     {
         SceneManager.LoadScene("Game");
+    }
+
+
+    public void ScoreUp()
+    {
+        _score++;
+        ScoreText.text = _score.ToString();
     }
 }
