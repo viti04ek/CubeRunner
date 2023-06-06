@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -41,5 +42,11 @@ public class GameManager : MonoBehaviour
         enemySpawnPos.x = randomSpawnX;
 
         Instantiate(EnemyPrefab, enemySpawnPos, Quaternion.identity);
+    }
+
+
+    public void Restart()
+    {
+        SceneManager.LoadScene("Game");
     }
 }
