@@ -12,7 +12,8 @@ public class Player : MonoBehaviour
     
     void Update()
     {
-        _xInput = Input.GetAxis("Horizontal");
+        TouchInput();
+
         transform.Translate(_xInput * DodgeSpeed * Time.deltaTime, 0, 0);
 
         float limitedX = Mathf.Clamp(transform.position.x, -XMax, XMax);
@@ -25,6 +26,29 @@ public class Player : MonoBehaviour
         if (other.gameObject.CompareTag("Enemy"))
         {
             GameManager.Instance.Restart();
+        }
+    }
+
+
+    private void TouchInput()
+    {
+        if (Input.GetMouseButton(0))
+        {
+            Vector3 touchPos = Input.mousePosition;
+            float middle = Screen.width / 2f;
+
+            if (touchPos.x < middle)
+            {
+                _xInput = -1;
+            }
+            else if (touchPos.x > middle)
+            {
+                _xInput = 1;
+            }
+        }
+        else
+        {
+            _xInput = 0;
         }
     }
 }
