@@ -19,11 +19,23 @@ public class GameManager : MonoBehaviour
 
     public GameObject MainMenu;
 
+    private int _highScore = 0;
+    public Text HightScoreText;
+
 
     void Awake()
     {
         if (Instance == null)
             Instance = this;
+    }
+
+
+    private void Start()
+    {
+        if (PlayerPrefs.HasKey("_highScore"))
+            _highScore = PlayerPrefs.GetInt("_highScore");
+        
+        HightScoreText.text = $"High score: {_highScore}";
     }
 
 
@@ -61,6 +73,12 @@ public class GameManager : MonoBehaviour
 
     public void Restart()
     {
+        if (_score > _highScore)
+        {
+            _highScore = _score;
+            PlayerPrefs.SetInt("_highScore", _highScore);
+        }
+
         SceneManager.LoadScene("Game");
     }
 
